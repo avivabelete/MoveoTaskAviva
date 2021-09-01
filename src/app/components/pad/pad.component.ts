@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-pad',
@@ -7,10 +7,28 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PadComponent implements OnInit {
 
+  @ViewChild('myplayer') playerRef: ElementRef;
   @Input() loopLink="";
+  padState: boolean = true;
   constructor() { }
 
   ngOnInit() {
+    this.padState = true;
+    this.playerRef.nativeElement.play();
+  }
+  onClick(){
+    this.padState = !this.padState;
+    this.playerRef.nativeElement.pause();
+    this.playerRef.nativeElement.load();
+    if(this.padState){
+    this.playerRef.nativeElement.play();
+    }
+  }
+  stopAll(){
+    this.playerRef.nativeElement.stop();
+  }
+  playAll(){
+    this.playerRef.nativeElement.play()
   }
 
 }

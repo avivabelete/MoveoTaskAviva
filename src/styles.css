@@ -11,22 +11,31 @@ body {
 }
 
 .container {
+  display: flex;
+  justify-content: space-around;
   width: 100%;
   margin: 30px auto;
   overflow:auto;
-  border: 1px solid #F5C6AA;
   padding: 30px;
-  border-radius: 5px;
 }
-.padcontainer {
-    width: auto;
-    height: auto;
-    margin: 30px auto;
-    overflow:auto;
-    border: 1px solid #F5C6AA;
-    padding: 30px;
+
+  .audioPlayer {
+    flex: 4;
+    width: 300px;
+    height: 300px;
+    background-image: url('https://picsum.photos/536/354');
+    background-size: cover;
+    /* position: relative; */
+    border: 1px solid red;
     border-radius: 5px;
-  }
+    padding: 30px;
+    /* overflow:auto; */
+}
+
+.audioPlayer audio{
+  bottom: 0;
+  width: 100%
+}
 .btn {
   display: inline-block;
   background: #FCD8D4;
