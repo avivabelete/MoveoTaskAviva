@@ -1,40 +1,42 @@
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 
-* {
+/* * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
+} */
 
 body {
   font-family: "Poppins", sans-serif;
+  height: 100%;
+
 }
 
 .container {
+  /* height: 100%; */
   display: flex;
-  justify-content: space-around;
-  width: 100%;
-  margin: 30px auto;
-  overflow:auto;
-  padding: 30px;
+  flex-flow: row wrap;
+  justify-content:space-around; 
+  align-items: center;
+  align-content: space-around;
+  /* margin: 30px auto;  */
+  
+  padding: 30px; 
 }
 
   .audioPlayer {
-    flex: 4;
     width: 300px;
     height: 300px;
-    background-image: url('https://picsum.photos/536/354');
     background-size: cover;
-    /* position: relative; */
+    cursor: pointer;
     border: 1px solid red;
     border-radius: 5px;
     padding: 30px;
-    /* overflow:auto; */
 }
-
 .audioPlayer audio{
-  bottom: 0;
-  width: 100%
+  /* margin-bottom: 0; */
+  width: 100%;
 }
 .btn {
   display: inline-block;
@@ -57,13 +59,5 @@ body {
 }
 .btn:active {
   transform: scale(0.98);
-}
-.btn:disabled {
-  cursor: auto;
-  opacity: 1;
-}
-.btn-block {
-  display: block;
-  width: 100%;
 }
 

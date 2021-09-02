@@ -14,21 +14,22 @@ export class PadComponent implements OnInit {
 
   ngOnInit() {
     this.padState = true;
-    this.playerRef.nativeElement.play();
+    // this.playerRef.nativeElement.play();
   }
   onClick(){
     this.padState = !this.padState;
-    this.playerRef.nativeElement.pause();
+    this.pause();
     this.playerRef.nativeElement.load();
     if(this.padState){
-    this.playerRef.nativeElement.play();
+      this.play();
     }
   }
-  stopAll(){
-    this.playerRef.nativeElement.stop();
+  pause(){
+    this.playerRef.nativeElement.pause();
   }
-  playAll(){
-    this.playerRef.nativeElement.play()
+  play(){
+    this.playerRef.nativeElement.play();
   }
+
 
 }

@@ -1,5 +1,5 @@
 <div class="audioPlayer" (click)="onClick()">
-<h2 *ngIf="!padState">Audio is Off, click TO Start again</h2>
+<h2 style="color: red;" *ngIf="!padState">Audio is Off, click TO Start again</h2>
 <audio #myplayer controls loop>
   <source [src]="loopLink" type="audio/mpeg">
 </audio>
