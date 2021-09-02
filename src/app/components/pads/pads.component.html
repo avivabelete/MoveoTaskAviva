@@ -3,11 +3,19 @@
     <button class="btn" (click)="playAll()">Play All</button>
     <button class="btn" (click)="stopAll()">Stop All</button>
   </div>
-  <div class="container" >
-    <app-pad  #pad  *ngFor="let link of links; let i = index" 
+  <div style="justify-content: center;" class="container">
+    <input type="checkbox" [(ngModel)]="record" (change)="onRecord($event)" name="record" id="record">
+    <label for="record">Record</label>
+    <button *ngIf="!record" class="btn" (click)="playsession()">Play session</button>
+  </div>
+  <div class="container">
+    <app-pad #pad  
+             *ngFor="let link of links; let i = index" 
+             [isPadsPlay]="playing"
+             style="background-size: cover;"   
              [style.background-image]="'url(https://material-components-web.appspot.com/images/photos/3x2/'+(i+1)+'.jpg)'"
              [loopLink]="link"
->
+             [currentTime]="getCurrentLoopTime.bind(this)">
             </app-pad>
   </div>
 </div>

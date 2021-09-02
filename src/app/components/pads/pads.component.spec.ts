@@ -19,7 +19,8 @@ describe('PadsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('Time left should be less then 9', () => {
+    const time = component.getCurrentLoopTime();
+    expect(time).toBeLessThanOrEqual(9);
   });
 });

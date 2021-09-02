@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { PadComponent } from './components/pad/pad.component';
 import { HeaderComponent } from './components/header/header.component';
 import { PadsComponent } from './components/pads/pads.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { PadsComponent } from './components/pads/pads.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

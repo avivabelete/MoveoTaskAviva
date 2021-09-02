@@ -19,7 +19,14 @@ describe('PadComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should pause current player', () => {
+    const player = component.playerRef;
+    component.pause();
+    expect(component.playerRef.nativeElement.paused).toBeTruthy();
+  });
+  it('should play current player', () => {
+    const player = component.playerRef;
+    component.play();
+    expect(component.playerRef.nativeElement.paused).toBeFalsy();
   });
 });
