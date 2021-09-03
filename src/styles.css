@@ -1,35 +1,32 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 
-/* * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-} */
+
 
 html, body {
-  /* height: 100%; */
   font-family: "Poppins", sans-serif;
+  background-color: black;
 }
 
 .container {
+  width: 80%;
   padding: 30px; 
   display: flex;
   flex-wrap: wrap;
   justify-content:space-around; 
-  align-content:space-around;
   align-items: center;
+  margin: 0 auto;
 }
   .audioPlayer {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     cursor: pointer;
-    border: 1px solid #FCD8D4;
-    border-radius: 5px;
+    border: 1px solid #03cddb;
+    border-radius: 10px;
     padding: 30px;
 }
 .btn {
-  background: #FCD8D4;
+  background: #03cddb;
   color: black;
   border: none;
   padding: 10px 20px;
@@ -38,9 +35,15 @@ html, body {
   cursor: pointer;
   font-size: 15px;
 }
+.message{
+  color: #03cddb(245, 133, 198);
+  font-size: 45px;
+  font-weight: bold;
+}
 @media screen and (max-width: 1200px) {
   .container{
     padding: 25px;
+    width: 90%;
   }
   .audioPlayer {
     width: 200px;
@@ -49,22 +52,30 @@ html, body {
   .btn{
   font-size: 15px;
   }
+  .message{
+    font-size: 35px;
+  }
 }
 @media screen and (max-width: 600px) {
   .container{
     padding: 15px;
+    width: 90%;
   }
   .audioPlayer {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
   }
   .btn{
     font-size: 12px;
+  }
+  .message{
+    font-size: 20px;
   }
 }
 
 .audioPlayer audio{
   width: 100%;
+  border-radius: 10px;
 }
 
 .btn:hover {

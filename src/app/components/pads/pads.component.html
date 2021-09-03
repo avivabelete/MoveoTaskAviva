@@ -4,15 +4,16 @@
     <button class="btn" (click)="stopAll()">Stop All</button>
   </div>
   <div style="justify-content: center;" class="container">
-    <input type="checkbox" [(ngModel)]="record" (change)="onRecord($event)" name="record" id="record">
-    <label for="record">Record</label>
-    <button *ngIf="!record" class="btn" (click)="playsession()">Play session</button>
+    <input type="checkbox" [(ngModel)]="isRecording" (change)="onRecord($event)" name="record" id="record">
+    <label style="color: white;" for="record">Record</label>
+    <button *ngIf="!isRecording" class="btn" (click)="playsession()">Play session</button>
   </div>
-  <div class="container">
+  <div style="border: 1px solid #03cddb; border-radius: 15px;" class="container">
     <app-pad #pad  
              *ngFor="let link of links; let i = index" 
              [isPadsPlay]="playing"
-             style="background-size: cover;"   
+             [isRecording]="isRecording"
+             style="background-size: cover;border-radius: 10px;margin-bottom: 20px;"   
              [style.background-image]="'url(https://material-components-web.appspot.com/images/photos/3x2/'+(i+1)+'.jpg)'"
              [loopLink]="link"
              [currentTime]="getCurrentLoopTime.bind(this)">

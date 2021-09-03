@@ -11,6 +11,8 @@
     "experimentalDecorators": true,
     "target": "es5",
     "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "typeRoots": [
       "node_modules/@types"
     ],
