@@ -1,0 +1,90 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+
+
+
+html, body {
+  font-family: "Poppins", sans-serif;
+  background-color: black;
+}
+
+.container {
+  width: 80%;
+  padding: 30px; 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-around; 
+  align-items: center;
+  margin: 0 auto;
+}
+  .audioPlayer {
+    width: 250px;
+    height: 250px;
+    cursor: pointer;
+    border: 1px solid #03cddb;
+    border-radius: 10px;
+    padding: 30px;
+}
+.btn {
+  background: #03cddb;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.message{
+  color: #03cddb(245, 133, 198);
+  font-size: 45px;
+  font-weight: bold;
+}
+@media screen and (max-width: 1200px) {
+  .container{
+    padding: 25px;
+    width: 90%;
+  }
+  .audioPlayer {
+    width: 200px;
+    height: 200px;
+  }
+  .btn{
+  font-size: 15px;
+  }
+  .message{
+    font-size: 35px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .container{
+    padding: 15px;
+    width: 90%;
+  }
+  .audioPlayer {
+    width: 90px;
+    height: 90px;
+  }
+  .btn{
+    font-size: 12px;
+  }
+  .message{
+    font-size: 20px;
+  }
+}
+
+.audioPlayer audio{
+  width: 100%;
+  border-radius: 10px;
+}
+
+.btn:hover {
+  opacity: 0.5;
+}
+.btn:focus {
+  outline: none;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+
