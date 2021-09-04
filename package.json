@@ -9,6 +9,9 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "heroku-postbuild": "ng build --prod"
+  },  
+  "engines": {
+    "node": "14.17.0"
   },
   "private": true,
   "dependencies": {
