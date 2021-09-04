@@ -8,6 +8,12 @@ html, body {
   background-color: black;
 }
 
+.title{
+  font-size: 50px;
+  text-align:center;
+  margin-top: 10px;
+  color: white;
+}
 .container {
   width: 80%;
   padding: 30px; 
@@ -41,6 +47,9 @@ html, body {
   font-weight: bold;
 }
 @media screen and (max-width: 1200px) {
+  .title{
+    font-size: 30px;
+  }
   .container{
     padding: 25px;
     width: 90%;
@@ -50,7 +59,7 @@ html, body {
     height: 200px;
   }
   .btn{
-  font-size: 15px;
+    font-size: 15px;
   }
   .message{
     font-size: 35px;

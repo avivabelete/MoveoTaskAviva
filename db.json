@@ -1,3 +1,22 @@
 {
-  "activities": []
+  "activities": [
+    {
+      "id": "0154dea9-15b6-42d5-8c40-b5c7c3f52ae6",
+      "item": "all",
+      "action": "stop",
+      "time": 1630776214873
+    },
+    {
+      "id": "6f76441c-90b7-4235-8720-e82850b1db5d",
+      "item": "all",
+      "action": "play",
+      "time": 1058
+    },
+    {
+      "id": "fa2048d4-3afc-4804-8010-d794cad89ad7",
+      "item": "all",
+      "action": "stop",
+      "time": 5968
+    }
+  ]
 }

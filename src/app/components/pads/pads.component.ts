@@ -1,9 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { Activity } from 'src/app/activity';
 import { LogService } from 'src/app/log.service';
 import  Links  from 'src/assets/links.json' ;
 import { PadComponent } from '../pad/pad.component';
 import { v4 as uuid } from 'uuid';
+import { timer } from 'rxjs';
 
 
 @Component({
@@ -17,54 +18,78 @@ export class PadsComponent implements OnInit {
   links: string[];
   isRecording: boolean;
   playing: boolean = false;
+  counter: number = 0;
+  data: any;
 
   constructor(private logSrv: LogService) { 
-    //Get loops links from json file
     this.links = Links.loopsLinks;
   }
   
   ngOnInit() {  }
 
   playsession(){
-    //add- play the session
-    this.logSrv.getActivities().subscribe(data => {
-      console.log(data);
+    this.logSrv.getActivities().subscribe((data: Activity[]) => {
+      //Play recorded session
+      for(let i=0;i<data.length;i++){
+        if(data[i].item === "all"){
+              timer(data[i].time).subscribe(()=> data[i].action == 'play' ? this.playAll(): this.stopAll());     
+            } else {
+              const item = this.myPads.filter((element:PadComponent) => data[i].item === element.loopLink)[0];
+              timer(data[i].time).subscribe(()=>data[i].action === 'off' ? item.onStateOff() :item.onStateOn());
+            }
+        }
+      
     })
   }
 
   onRecord(){
-    //start session by deleting the last session
+    //Delete previous session
     if(this.isRecording){
       this.logSrv.getActivities().subscribe((data:Activity[]) => {
-        data.forEach(element => {
-          //check
-          this.logSrv.deleteSession(element.id).subscribe();
-        });
+      data.forEach(element => {
+        this.logSrv.deleteSession(element.id).subscribe();
       });
+    });
     }
+    this.counter = 0;
+
+    //If recording stop, stop all loops
+    this.stopAll();
   }
   getCurrentLoopTime(): number{
-    //check the time where the loops are in
+    //Check the time where the loops are in
     return this.myPads.filter((item:PadComponent)=>
            item.padState)[0].playerRef.nativeElement.currentTime;
   }
   stopAll(){
-    // if in recording mode, save the activity
+    //For recording mode, save the activity
     if(this.isRecording){
-      const act: Activity = {id: uuid(), item: 'all',action: 'stop'}
+      const temp = Date.now();
+      const act: Activity = {id: uuid(), item: 'all',action: 'stop', time: temp-this.counter}
+      this.counter = temp;
       this.logSrv.addActivity(act).subscribe();
     }
-    //stop all loops
+
+    //Stop all loops
     this.playing = false;
-    this.myPads.forEach(element => element.pause())
+    this.myPads.forEach(element => {
+      element.stop()
+      //Show controls of pad if in ON state
+      if(element.padState){
+          element.player.controls = true;
+          element.player.load();
+      }
+     })
   }
   playAll(){
-    // if in recording mode, save the activity
+    //For recording mode, save the activity
     if(this.isRecording){
-      const act: Activity = {id: uuid(), item: 'all',action: 'play'}
+      const temp = Date.now();
+      const act: Activity = {id: uuid(), item: 'all',action: 'play', time: temp - this.counter}
+      this.counter = temp;
       this.logSrv.addActivity(act).subscribe();
     }
-    //play all loops
+    //Play all loops
     this.playing = true;
     this.myPads.forEach(element => element.play())
   }

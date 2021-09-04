@@ -13,10 +13,12 @@
              *ngFor="let link of links; let i = index" 
              [isPadsPlay]="playing"
              [isRecording]="isRecording"
+             [timestamp]="counter"
+             [loopLink]="link"
+             [currentTime]="getCurrentLoopTime.bind(this)"
              style="background-size: cover;border-radius: 10px;margin-bottom: 20px;"   
              [style.background-image]="'url(https://material-components-web.appspot.com/images/photos/3x2/'+(i+1)+'.jpg)'"
-             [loopLink]="link"
-             [currentTime]="getCurrentLoopTime.bind(this)">
+>
             </app-pad>
   </div>
 </div>
