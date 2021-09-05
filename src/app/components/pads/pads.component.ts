@@ -5,6 +5,7 @@ import { PadComponent } from '../pad/pad.component';
 import { v4 as uuid } from 'uuid';
 import { timer } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { HttpClient } from '@angular/common/http';
 export class PadsComponent implements OnInit {
 
   @ViewChildren('pad') myPads: PadComponent[]=[];
-  links: any;
+  links: string[];
   isRecording: boolean;
   playing: boolean = false;
   counter: number = 0;
@@ -23,9 +24,9 @@ export class PadsComponent implements OnInit {
   
 
   constructor(private logSrv: LogService, private http: HttpClient) { 
-    this.http.get("./../../../assets/links.json")
+    this.http.get(environment.linkpaths+"assets/links.json")
     .subscribe((data) => {
-      this.links= data['loopsLinks']});
+      this.links = data['loopsLinks']});
   }
   
   ngOnInit() { 

@@ -4,6 +4,8 @@ import { timer } from 'rxjs';
 import { Activity } from 'src/app/activity';
 import { LogService } from 'src/app/log.service';
 import { v4 as uuid } from 'uuid';
+import { environment } from 'src/environments/environment';
+
 
 
 @Component({
@@ -17,6 +19,7 @@ export class PadComponent implements OnInit {
   @ViewChild('myplayer') playerRef: ElementRef;
   player: any;
   padState: boolean;
+  environment=environment;
 
   //Getting data from parent
   @Input() loopLink="";
