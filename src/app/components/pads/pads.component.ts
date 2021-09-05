@@ -1,10 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { Activity } from 'src/app/activity';
 import { LogService } from 'src/app/log.service';
-import  Links  from 'src/assets/links.json' ;
 import { PadComponent } from '../pad/pad.component';
 import { v4 as uuid } from 'uuid';
 import { timer } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -14,18 +14,22 @@ import { timer } from 'rxjs';
 })
 export class PadsComponent implements OnInit {
 
-  @ViewChildren('pad') myPads: PadComponent[];
-  links: string[];
+  @ViewChildren('pad') myPads: PadComponent[]=[];
+  links: any;
   isRecording: boolean;
   playing: boolean = false;
   counter: number = 0;
   data: any;
+  
 
-  constructor(private logSrv: LogService) { 
-    this.links = Links.loopsLinks;
+  constructor(private logSrv: LogService, private http: HttpClient) { 
+    this.http.get("./../../../assets/links.json")
+    .subscribe((data) => {
+      this.links= data['loopsLinks']});
   }
   
-  ngOnInit() {  }
+  ngOnInit() { 
+  }
 
   playsession(){
     this.logSrv.getActivities().subscribe((data: Activity[]) => {
@@ -46,9 +50,9 @@ export class PadsComponent implements OnInit {
     //Delete previous session
     if(this.isRecording){
       this.logSrv.getActivities().subscribe((data:Activity[]) => {
-      data.forEach(element => {
+      data ? data.forEach((element:Activity) => {
         this.logSrv.deleteSession(element.id).subscribe();
-      });
+      }):'';
     });
     }
     this.counter = 0;
@@ -72,14 +76,14 @@ export class PadsComponent implements OnInit {
 
     //Stop all loops
     this.playing = false;
-    this.myPads.forEach(element => {
+    this.myPads ? this.myPads.forEach((element:PadComponent) => {
       element.stop()
       //Show controls of pad if in ON state
       if(element.padState){
           element.player.controls = true;
           element.player.load();
       }
-     })
+     }):'';
   }
   playAll(){
     //For recording mode, save the activity
@@ -91,6 +95,6 @@ export class PadsComponent implements OnInit {
     }
     //Play all loops
     this.playing = true;
-    this.myPads.forEach(element => element.play())
+    this.myPads ? this.myPads.forEach((element:PadComponent) => element.play()) :'';
   }
 }

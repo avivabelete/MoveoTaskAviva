@@ -4,11 +4,11 @@
     <button class="btn" (click)="stopAll()">Stop All</button>
   </div>
   <div style="justify-content: center;" class="container">
-    <input type="checkbox" [(ngModel)]="isRecording" (change)="onRecord($event)" name="record" id="record">
+    <input type="checkbox" [(ngModel)]="isRecording" (change)="onRecord()" name="record" id="record">
     <label style="color: white;" for="record">Record</label>
     <button *ngIf="!isRecording" class="btn" (click)="playsession()">Play session</button>
   </div>
-  <div style="border: 1px solid #03cddb; border-radius: 15px;" class="container">
+  <div *ngIf="links.length > 0" style="border: 1px solid #03cddb; border-radius: 15px;" class="container">
     <app-pad #pad  
              *ngFor="let link of links; let i = index" 
              [isPadsPlay]="playing"
